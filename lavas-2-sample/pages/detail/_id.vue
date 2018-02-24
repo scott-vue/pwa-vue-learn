@@ -29,6 +29,7 @@
 <script>
 
     import axios from 'axios';
+    import {mapState} from 'vuex';
 
     export default {
         name: "detail-_id",
@@ -47,6 +48,17 @@
             let condition = result.data.query.results.channel.item.condition;
 
             console.log(`Weather of Shanghai: ${condition.text}, ${condition.temp}°F`);
+        },
+        async asyncData({store, route}) {
+            await store.dispatch('detail/setWeather', {woeid: 2151849});
+        },
+        computed: {
+            ...mapState('detail', [
+                'weather'
+            ])
+        },
+        created() {
+            console.log(`Weather of Shanghai: ${this.weather.text}, ${this.weather.temp}°F`);
         }
     }
 </script>
