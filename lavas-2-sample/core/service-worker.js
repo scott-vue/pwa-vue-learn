@@ -22,6 +22,13 @@ workboxSW.precache([]);
 // workboxSW.router.registerRoute(/^https:\/\/lavas\.baidu\.com\/some\/api/,
 //     workboxSW.strategies.networkFirst());
 
+/**
+ * 将天气缓存起来
+ * Define runtime cache.
+ */
+workboxSW.router.registerRoute(new RegExp('https://query\\.yahooapis\\.com/v1/public/yql'),
+    workboxSW.strategies.networkFirst());
+
 
 /**
  * example runningCache with resources from CDN
